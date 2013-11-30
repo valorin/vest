@@ -54,7 +54,7 @@ class Vest extends Command
 
         // Run group
         $this->banner($group);
-        $this->runGroup($group);
+        return $this->runGroup($group);
     }
 
     /**
@@ -74,6 +74,7 @@ class Vest extends Command
     /**
      * Displays the banner listing the group being run.
      *
+     * @param  string $group
      * @return void
      */
     protected function banner($group)
@@ -89,11 +90,100 @@ class Vest extends Command
     /**
      * Runs the specified test group.
      *
+     * @param  string $group
      * @return void
      */
     protected function runGroup($group)
     {
+        // Resolve commands
+        $commands = $this->resolve($group);
 
+        // Run Commands
+        return $this->runCommands($commands);
+    }
+
+
+    /**
+     * Resolves linked and nested commands from the configuration into a list of useful commands.
+     *
+     * @param  string $group
+     * @return array
+     */
+    protected function resolve($group)
+    {
+        // Load config
+        $config   = Config::get('vest::vest');
+        $commands = array();
+
+        // Loop steps
+        foreach ($config[$group] as $key => $value) {
+
+            // Reference to another step
+            if (is_numeric($key)) {
+                $resolved = $this->resolve($value);
+                $commands = array_merge($commands, $resolved);
+                continue;
+            }
+
+            // Array of values
+            if (is_array($value)) {
+                foreach ($value as $val) {
+                    $commands[] = [$key, $val];
+                }
+                continue;
+            }
+
+            $commands[] = [$key, $value];
+        }
+
+        return $commands;
+    }
+
+
+    /**
+     * Runs the specified commands.
+     *
+     * @param  array
+     * @return void
+     */
+    protected function runCommands($commands)
+    {
+        // Switch working directory
+        chdir(base_path());
+
+        // Loop commands
+        $status = 0;
+        foreach ($commands as $command) {
+
+            // Handle types
+            list($type, $cmd) = $command;
+            switch ($type) {
+
+                // Artisan Commands
+                case 'artisan':
+                    $this->question("Artisan: {$cmd}");
+                    $status += $this->call($cmd);
+                    $this->comment('');
+                    break;
+
+                // Exec command
+                case 'exec':
+                    $this->question("Exec: {$cmd}");
+                    passthru($cmd, $code);
+                    $status += $code;
+                    $this->comment('');
+                    break;
+            }
+        }
+
+        // Check status code
+        if (!$status) {
+            $this->info("All commands executed successfully!");
+            return 0;
+        }
+
+        $this->error("One or more commands failed!");
+        return 1;
     }
 
 
