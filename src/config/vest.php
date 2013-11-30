@@ -14,7 +14,7 @@ return array(
         'artisan' => array(
             'optimize',
             'cache:clear',
-            'compile:less',
+            'less:compile',
         ),
     ),
 
@@ -25,11 +25,11 @@ return array(
 
     // PHPUnit
     'phpunit' => array(
-        'exec' => './vendor/bin/phpunit',
+        'exec' => './vendor/bin/phpunit --configuration '.__DIR__.'/../../phpunit.xml',
     ),
 
     // PHP Code Sniffer
     'phpcs' => array(
-        'exec' => './vendor/bin/phpcs --standard=phpcs.xml ./app/',
+        'exec' => './vendor/bin/phpcs --standard='.__DIR__.'/../../phpcs.xml ./app/',
     ),
 );
