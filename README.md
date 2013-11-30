@@ -1,4 +1,5 @@
-# Vest -- Valorin's Test Suite Artisan Command for Laravel 4.
+# Vest
+*Valorin's Test Suite Artisan Command for Laravel 4.*
 
 Vest is a simple package I wrote to allow me to re-use my Laravel 4 test suite
 across all of my projects without needing to worry about keeping it in sync.
