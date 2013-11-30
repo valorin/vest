@@ -169,7 +169,7 @@ class Vest extends Command
                 // Exec command
                 case 'exec':
                     $this->question("Exec: {$cmd}");
-                    passthru($cmd, $code);
+                    system($cmd, $code);
                     $status += $code;
                     $this->comment('');
                     break;

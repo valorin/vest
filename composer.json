@@ -12,7 +12,7 @@
         "php": ">=5.3.0",
         "illuminate/support": "4.0.*",
         "jakub-onderka/php-parallel-lint": "*",
-        "phpunit/phpunit": "3.*",
+        "phpunit/phpunit": "3.7.*",
         "squizlabs/php_codesniffer": "1.*"
     },
     "autoload": {
