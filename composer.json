@@ -1,6 +1,6 @@
 {
     "name": "valorin/vest",
-    "description": "Valorin's Test suite Artisan command.",
+    "description": "Valorin's Test Suite Artisan Command for Laravel 4.",
     "authors": [
         {
             "name": "Stephen Rees-Carter",
