@@ -3,8 +3,8 @@
 use Illuminate\Support\ServiceProvider;
 use Valorin\Vest\Command\Vest;
 
-class VestServiceProvider extends ServiceProvider {
-
+class VestServiceProvider extends ServiceProvider
+{
     /**
      * Indicates if loading of the provider is deferred.
      *
@@ -42,8 +42,7 @@ class VestServiceProvider extends ServiceProvider {
     {
         $app = $this->app;
 
-        $app['command.vest'] = $app->share(function($app)
-        {
+        $app['command.vest'] = $app->share(function ($app) {
             return new Vest;
         });
 
