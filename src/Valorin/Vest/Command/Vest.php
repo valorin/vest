@@ -128,17 +128,37 @@ class Vest extends Command
             // Array of values
             if (is_array($value)) {
                 foreach ($value as $val) {
-                    $commands[] = [$key, $val];
+                    $commands[] = $this->resolveOptions($key, $val);
                 }
                 continue;
             }
 
-            $commands[] = [$key, $value];
+            $commands[] = $this->resolveOptions($key, $value);
         }
 
         return $commands;
     }
 
+    /**
+     * Resolves the key value into key value, and options.
+     *
+     * @param  string       $type
+     * @param  string|array $command
+     * @return array
+     */
+    protected function resolveOptions($type, $command)
+    {
+        // No options
+        if (!is_array($command)) {
+            return [$type, $command, []];
+        }
+
+        // Extract
+        $options = $command;
+        $command = array_shift($options);
+
+        return [$type, $command, $options];
+    }
 
     /**
      * Runs the specified commands.
@@ -152,17 +172,22 @@ class Vest extends Command
         chdir(base_path());
 
         // Loop commands
-        $status = 0;
+        $failed = false;
         foreach ($commands as $command) {
 
-            // Handle types
-            list($type, $cmd) = $command;
+            // Extract components
+            list($type, $cmd, $options) = $command;
+
+            // Switch types
             switch ($type) {
 
                 // Artisan Commands
                 case 'artisan':
                     $this->question("Artisan: {$cmd}");
-                    $status += $this->call($cmd);
+                    if ($this->call($cmd, $options)) {
+                        $this->error('Command failed!');
+                        $failed = true;
+                    }
                     $this->comment('');
                     break;
 
@@ -170,14 +195,17 @@ class Vest extends Command
                 case 'exec':
                     $this->question("Exec: {$cmd}");
                     system($cmd, $code);
-                    $status += $code;
+                    if ($code) {
+                        $this->error('Command failed!');
+                        $failed = true;
+                    }
                     $this->comment('');
                     break;
             }
         }
 
         // Check status code
-        if (!$status) {
+        if (!$failed) {
             $this->info("All commands executed successfully!");
             return 0;
         }

@@ -3,14 +3,14 @@
 return array(
     // Run everything (default command)
     'all' => array(
-        'cleanup',
+        'prepare',
         'lint',
         'phpunit',
         'phpcs',
     ),
 
     // Clean up environment
-    'cleanup' => array(
+    'prepare' => array(
         'artisan' => array(
             'optimize',
             'cache:clear',
