@@ -14,7 +14,6 @@ return array(
         'artisan' => array(
             'optimize',
             'cache:clear',
-            'less:compile',
         ),
     ),
 
