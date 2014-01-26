@@ -1,7 +1,7 @@
 <?php namespace Valorin\Vest;
 
 use Illuminate\Support\ServiceProvider;
-use Valorin\Vest\Command\Vest;
+use Valorin\Vest\Command;
 
 class VestServiceProvider extends ServiceProvider
 {
@@ -29,7 +29,7 @@ class VestServiceProvider extends ServiceProvider
      */
     public function register()
     {
-        $this->registerCommand();
+        $this->registerCommands();
     }
 
 
@@ -38,14 +38,20 @@ class VestServiceProvider extends ServiceProvider
      *
      * @return void
      */
-    protected function registerCommand()
+    protected function registerCommands()
     {
         $app = $this->app;
 
+        // 'vest'
         $app['command.vest'] = $app->share(function ($app) {
-            return new Vest;
+            return new Command\Vest;
         });
-
         $this->commands('command.vest');
+
+        // 'vest:createdb'
+        $app['command.vest.createdb'] = $app->share(function ($app) {
+            return new Command\CreateDb;
+        });
+        $this->commands('command.vest.createdb');
     }
 }
