@@ -58,7 +58,7 @@ class CreateDb extends Command
         if (starts_with($database, Config::get('dbcreate.prefix', self::PREFIX))
             && !$this->option('ignore-existing')) {
             $this->info("Database already created.");
-            return 1;
+            return !$this->option('no-existing-error');
         }
 
 
@@ -174,6 +174,7 @@ class CreateDb extends Command
     protected function getOptions()
     {
         return array(
+            array('no-existing-error', null, InputOption::VALUE_NONE, 'Supress error on existing db.', null),
             array('ignore-existing', null, InputOption::VALUE_NONE, 'Ignores existing database connection.', null),
             array(
                 'create-user', null, InputOption::VALUE_NONE,
