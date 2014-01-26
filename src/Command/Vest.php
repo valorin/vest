@@ -47,7 +47,7 @@ class Vest extends Command
         // Check valid group
         $group = $this->argument('group');
 
-        if (!Config::get('vest::vest.'.$group)) {
+        if (!Config::get('vest::'.$group)) {
             $this->error("ERROR: Unknown group '{$group}'");
             return 1;
         }
@@ -66,7 +66,7 @@ class Vest extends Command
     {
         $this->info("Available Vest groups:");
 
-        foreach (array_keys(Config::get('vest::vest')) as $group) {
+        foreach (array_keys(Config::get('vest::config')) as $group) {
             $this->comment('* '.$group);
         }
     }
@@ -112,7 +112,7 @@ class Vest extends Command
     protected function resolve($group)
     {
         // Load config
-        $config   = Config::get('vest::vest');
+        $config   = Config::get('vest::config');
         $commands = array();
 
         // Loop steps

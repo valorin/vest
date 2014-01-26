@@ -19,7 +19,7 @@ class VestServiceProvider extends ServiceProvider
      */
     public function boot()
     {
-        $this->package('valorin/vest');
+        $this->package('valorin/vest', 'vest', __DIR__);
     }
 
     /**
@@ -40,6 +40,7 @@ class VestServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
+
         $app = $this->app;
 
         // 'vest'
