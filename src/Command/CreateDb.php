@@ -15,7 +15,7 @@ class CreateDb extends Command
     const HOST = 'localhost';
     const USER = 'dev';
     const PASS = '';
-    const PREFIX = 'dev';
+    const PREFIX = 'dev_vest_';
 
 
     /**
@@ -55,7 +55,7 @@ class CreateDb extends Command
 
         $conn = Config::get('database.default');
         $database = Config::get("database.connections.{$conn}.database");
-        if (starts_with($database, Config::get('dbcreate.prefix', self::PREFIX))
+        if (starts_with($database, Config::get('vest::createdb.prefix', self::PREFIX))
             && !$this->option('ignore-existing')) {
             $this->info("Database already created.");
             return !$this->option('no-existing-error');
@@ -63,9 +63,9 @@ class CreateDb extends Command
 
 
         $this->comment('Attempting to connect to the database...');
-        $host = Config::get('dbcreate.host', self::HOST);
-        $user = Config::get('dbcreate.user', self::USER);
-        $pass = Config::get('dbcreate.pass', self::PASS);
+        $host = Config::get('vest::createdb.host', self::HOST);
+        $user = Config::get('vest::createdb.user', self::USER);
+        $pass = Config::get('vest::createdb.pass', self::PASS);
         $conn = Config::get('database.default');
         Config::set("database.connections.{$conn}.database", "information_schema"); // TODO: Remove hardcoded db
         Config::set("database.connections.{$conn}.hostname", $host);
@@ -81,8 +81,8 @@ class CreateDb extends Command
 
         $this->comment('Creating dev database...');
 
-        $prefix = Config::get('dbcreate.prefix', self::PREFIX);
-        $database = $prefix.'_'.time();
+        $prefix = Config::get('vest::createdb.prefix', self::PREFIX);
+        $database = $prefix.'_'.(getenv('VEST_DATABASE') ?: time());
         DB::statement("CREATE DATABASE {$database}");
 
         $this->comment('Saving development config...');
@@ -118,10 +118,10 @@ class CreateDb extends Command
 
     protected function createUser()
     {
-        $devHost = Config::get('dbcreate.host', self::HOST);
-        $devUser = Config::get('dbcreate.user', self::USER);
-        $devPass = Config::get('dbcreate.pass', self::PASS);
-        $devPrefix = Config::get('dbcreate.prefix', self::PREFIX);
+        $devHost = Config::get('vest::createdb.host', self::HOST);
+        $devUser = Config::get('vest::createdb.user', self::USER);
+        $devPass = Config::get('vest::createdb.pass', self::PASS);
+        $devPrefix = Config::get('vest::createdb.prefix', self::PREFIX);
 
         $this->info(
             "To create the {$devUser} user and {$devPrefix} db prefix, "
