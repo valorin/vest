@@ -82,7 +82,7 @@ class CreateDb extends Command
         $this->comment('Creating dev database...');
 
         $prefix = Config::get('vest::createdb.prefix', self::PREFIX);
-        $database = $prefix.'_'.(getenv('VEST_DATABASE') ?: time());
+        $database = $prefix.(getenv('VEST_DATABASE') ?: time());
         DB::statement("CREATE DATABASE {$database}");
 
         $this->comment('Saving development config...');
