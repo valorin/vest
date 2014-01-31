@@ -1,6 +1,7 @@
 <?php namespace Valorin\Vest\Command;
 
 use Illuminate\Console\Command;
+use Illuminate\Support\Facades\App;
 use Illuminate\Support\Facades\Config;
 use Symfony\Component\Console\Input\InputArgument;
 use Symfony\Component\Console\Input\InputOption;
@@ -38,6 +39,12 @@ class Vest extends Command
      */
     public function fire()
     {
+        // Check for the 'testing' environment
+        if (!App::environment('testing')) {
+            $this->error("Please run vest in the 'testing' environment: ./artisan --env=testing vest");
+            return 0;
+        }
+
         // Check for list
         if ($this->option('list')) {
             $this->listGroups();
