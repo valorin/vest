@@ -1,4 +1,7 @@
 <?php
+/**
+ * Vest Configuration.
+ */
 
 return array(
     // Run everything (default command)
@@ -12,6 +15,7 @@ return array(
     // Clean up environment
     'prepare' => array(
         'artisan' => array(
+            'clear-compiled',
             'optimize',
             'cache:clear',
         ),
@@ -24,11 +28,11 @@ return array(
 
     // PHPUnit
     'phpunit' => array(
-        'exec' => './vendor/bin/phpunit --configuration '.__DIR__.'/../../phpunit.xml',
+        'exec' => './vendor/bin/phpunit ./app/',
     ),
 
     // PHP Code Sniffer
     'phpcs' => array(
-        'exec' => './vendor/bin/phpcs --standard='.__DIR__.'/../../phpcs.xml ./app/',
+        'exec' => './vendor/bin/phpcs --standard=phpcs.xml ./app/',
     ),
 );
