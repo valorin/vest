@@ -22,3 +22,4 @@ nbproject
 /public/assets/fonts
 coverage/
 coverage.txt
+composer.lock
