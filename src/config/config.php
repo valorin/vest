@@ -8,8 +8,9 @@ return array(
     'all' => array(
         'prepare',
         'lint',
-        'phpunit',
         'phpcs',
+        'phpmd',
+        'phpunit',
     ),
 
     // Clean up environment
@@ -29,6 +30,11 @@ return array(
     // PHPUnit
     'phpunit' => array(
         'exec' => './vendor/bin/phpunit ./app/',
+    ),
+
+    // PHPMD
+    'phpmd' => array(
+        'exec' => './vendor/bin/phpmd ./app/ text cleancode,codesize,controversial,design,naming,unusedcode',
     ),
 
     // PHP Code Sniffer

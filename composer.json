@@ -13,7 +13,8 @@
         "illuminate/support": "4.*",
         "jakub-onderka/php-parallel-lint": "*",
         "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*"
+        "squizlabs/php_codesniffer": "*",
+        "phpmd/phpmd": "*"
     },
     "autoload": {
         "psr-4": {
