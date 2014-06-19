@@ -179,7 +179,7 @@ class Vest extends Command
         chdir(base_path());
 
         // Loop commands
-        $failed = false;
+        $failed = array();
         foreach ($commands as $command) {
 
             // Extract components
@@ -193,7 +193,7 @@ class Vest extends Command
                     $this->question("Artisan: {$cmd}");
                     if ($this->call($cmd, $options)) {
                         $this->error('Command failed!');
-                        $failed = true;
+                        $failed[] = "Artisan: {$cmd}";
                     }
                     $this->comment('');
                     break;
@@ -204,7 +204,7 @@ class Vest extends Command
                     system($cmd, $code);
                     if ($code) {
                         $this->error('Command failed!');
-                        $failed = true;
+                        $failed[] = "Exec: {$cmd}";
                     }
                     $this->comment('');
                     break;
@@ -212,12 +212,15 @@ class Vest extends Command
         }
 
         // Check status code
-        if (!$failed) {
+        if (!count($failed)) {
             $this->info("All commands executed successfully!");
             return 0;
         }
 
-        $this->error("One or more commands failed!");
+        $this->error("One or more commands failed:");
+        foreach ($failed as $fail) {
+            $this->comment(' > '.$fail);
+        }
         return 1;
     }
 
