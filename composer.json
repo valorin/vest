@@ -15,7 +15,7 @@
         "phpunit/phpunit": "*",
         "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
-        "sensiolabs/security-checker": "dev-master"
+        "sensiolabs/security-checker": "*"
     },
     "autoload": {
         "psr-4": {
