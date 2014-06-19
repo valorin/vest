@@ -11,6 +11,7 @@ return array(
         'phpcs',
         'phpmd',
         'phpunit',
+        'security',
     ),
 
     // Clean up environment
@@ -40,5 +41,10 @@ return array(
     // PHP Code Sniffer
     'phpcs' => array(
         'exec' => './vendor/bin/phpcs --standard=phpcs.xml ./app/',
+    ),
+
+    // Check Composer Packages for known vulnerabilities.
+    'security' => array(
+        'exec' => './vendor/bin/security-checker security:check',
     ),
 );

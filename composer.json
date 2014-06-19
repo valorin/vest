@@ -14,7 +14,8 @@
         "jakub-onderka/php-parallel-lint": "*",
         "phpunit/phpunit": "*",
         "squizlabs/php_codesniffer": "*",
-        "phpmd/phpmd": "*"
+        "phpmd/phpmd": "*",
+        "sensiolabs/security-checker": "dev-master"
     },
     "autoload": {
         "psr-4": {
