@@ -30,7 +30,7 @@ return array(
 
     // PHPUnit
     'phpunit' => array(
-        'exec' => './vendor/bin/phpunit ./app/',
+        'exec' => './vendor/bin/phpunit',
     ),
 
     // PHPMD
