@@ -40,7 +40,7 @@ return array(
 
     // PHP Code Sniffer
     'phpcs' => array(
-        'exec' => './vendor/bin/phpcs --standard=phpcs.xml ./app/',
+        'exec' => './vendor/bin/phpcs --standard=PSR2 ./app/',
     ),
 
     // Check Composer Packages for known vulnerabilities.
