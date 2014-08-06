@@ -50,6 +50,12 @@ class VestServiceProvider extends ServiceProvider
         $this->commands('command.vest');
 
         // 'vest:createdb'
+        $app['command.vest.coverage'] = $app->share(function ($app) {
+            return new Command\Coverage;
+        });
+        $this->commands('command.vest.coverage');
+
+        // 'vest:createdb'
         $app['command.vest.createdb'] = $app->share(function ($app) {
             return new Command\CreateDb;
         });

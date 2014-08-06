@@ -30,7 +30,8 @@ return array(
 
     // PHPUnit
     'phpunit' => array(
-        'exec' => './vendor/bin/phpunit',
+        'exec'    => './vendor/bin/phpunit',
+        'artisan' => [['vest:coverage', 'file' => './coverage.serialized', 'threshold' => 75]],
     ),
 
     // PHPMD

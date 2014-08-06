@@ -190,10 +190,10 @@ class Vest extends Command
 
                 // Artisan Commands
                 case 'artisan':
-                    $this->question("Artisan: {$cmd}");
+                    $this->question("Artisan: {$cmd} ".json_encode($options));
                     if ($this->call($cmd, $options)) {
                         $this->error('Command failed!');
-                        $failed[] = "Artisan: {$cmd}";
+                        $failed[] = "Artisan: {$cmd} ".json_encode($options);
                     }
                     $this->comment('');
                     break;
