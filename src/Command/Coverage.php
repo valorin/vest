@@ -2,6 +2,7 @@
 
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Str;
 use Symfony\Component\Console\Input\InputArgument;
 
 class Coverage extends Command
@@ -39,7 +40,14 @@ class Coverage extends Command
     {
         // Open serialised file
         $serialised = File::get($this->argument('file'));
-        $coverage   = unserialize($serialised);
+        if (!Str::startsWith($serialised, '<?php')) {
+            $coverage   = unserialize($serialised);
+
+        // Require PHP object in file
+        } else {
+            $coverage = require $this->argument('file');
+        }
+
 
         // Check coverage percentage
         $total      = $coverage->getReport()->getNumExecutableLines();
