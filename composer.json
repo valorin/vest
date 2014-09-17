@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "~4.2",
+        "illuminate/support": "~5.0",
         "benconstable/phpspec-laravel": "~1.0",
         "jakub-onderka/php-console-highlighter": "*",
         "jakub-onderka/php-parallel-lint": "*",
@@ -24,5 +24,6 @@
         "psr-4": {
             "Valorin\\Vest\\": "src/"
         }
-    }
+    },
+    "minimum-stability": "dev"
 }
