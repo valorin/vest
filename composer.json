@@ -10,7 +10,7 @@
     ],
     "require": {
         "php": ">=5.3.0",
-        "illuminate/support": "~4.2,~5.0",
+        "illuminate/support": "~4.2",
         "benconstable/phpspec-laravel": "~1.0",
         "jakub-onderka/php-console-highlighter": "*",
         "jakub-onderka/php-parallel-lint": "*",
