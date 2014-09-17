@@ -11,6 +11,7 @@ return array(
         'phpcs',
         'phpmd',
         'phpunit',
+        'phpspec',
         'security',
     ),
 
@@ -42,6 +43,11 @@ return array(
     // PHP Code Sniffer
     'phpcs' => array(
         'exec' => './vendor/bin/phpcs --standard=PSR2 ./app/',
+    ),
+
+    // phpspec
+    'phpspec' => array(
+        'exec' => './vendor/bin/phpspec run --format=pretty --ansi --no-interaction',
     ),
 
     // Check Composer Packages for known vulnerabilities.

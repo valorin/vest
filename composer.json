@@ -11,12 +11,14 @@
     "require": {
         "php": ">=5.3.0",
         "illuminate/support": "~4.2,~5.0",
+        "benconstable/phpspec-laravel": "~1.0",
+        "jakub-onderka/php-console-highlighter": "*",
         "jakub-onderka/php-parallel-lint": "*",
-        "phpunit/phpunit": "*",
-        "squizlabs/php_codesniffer": "*",
         "phpmd/phpmd": "*",
+        "phpspec/phpspec": "~2.0",
+        "phpunit/phpunit": "*",
         "sensiolabs/security-checker": "*",
-        "jakub-onderka/php-console-highlighter": "*"
+        "squizlabs/php_codesniffer": "*"
     },
     "autoload": {
         "psr-4": {

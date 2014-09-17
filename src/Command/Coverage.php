@@ -38,6 +38,12 @@ class Coverage extends Command
      */
     public function fire()
     {
+        // Check file exists
+        if (!File::exists($this->argument('file'))) {
+            $this->comment('No coverage file found, skipping.');
+            return 0;
+        }
+
         // Open serialised file
         $serialised = File::get($this->argument('file'));
         if (!Str::startsWith($serialised, '<?php')) {
