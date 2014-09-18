@@ -2,10 +2,10 @@
 /**
  * Vest Configuration.
  */
+return [
 
-return array(
-    // Run everything (default command)
-    'all' => array(
+    // Default Tasks list
+    'all' => [
         'prepare',
         'lint',
         'phpcs',
@@ -13,45 +13,45 @@ return array(
         'phpunit',
         'phpspec',
         'security',
-    ),
+    ],
 
     // Clean up environment
-    'prepare' => array(
-        'artisan' => array(
+    'prepare' => [
+        'artisan' => [
             'clear-compiled',
             'optimize',
             'cache:clear',
-        ),
-    ),
+        ],
+    ],
 
     // PHP Lint
-    'lint' => array(
+    'lint' => [
         'exec' => './vendor/bin/parallel-lint ./app/',
-    ),
-
-    // PHPUnit
-    'phpunit' => array(
-        'exec'    => './vendor/bin/phpunit',
-        'artisan' => [['vest:coverage', 'file' => './coverage.serialized', 'threshold' => 75]],
-    ),
+    ],
 
     // PHPMD
-    'phpmd' => array(
+    'phpmd' => [
         'exec' => './vendor/bin/phpmd ./app/ text cleancode,codesize,controversial,design,naming,unusedcode',
-    ),
+    ],
 
     // PHP Code Sniffer
-    'phpcs' => array(
+    'phpcs' => [
         'exec' => './vendor/bin/phpcs --standard=PSR2 ./app/',
-    ),
+    ],
+
+    // PHPUnit
+    'phpunit' => [
+        'exec'    => './vendor/bin/phpunit',
+        'artisan' => [['vest:coverage', 'file' => './coverage.serialized', 'threshold' => 75]],
+    ],
 
     // phpspec
-    'phpspec' => array(
+    'phpspec' => [
         'exec' => './vendor/bin/phpspec run --format=pretty --ansi --no-interaction',
-    ),
+    ],
 
     // Check Composer Packages for known vulnerabilities.
-    'security' => array(
+    'security' => [
         'exec' => './vendor/bin/security-checker security:check',
-    ),
-);
+    ],
+];

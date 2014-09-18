@@ -1,3 +1,14 @@
 ---
+suites:
+  suitename:
+    namespace: Namespace
+    src_path: app
+    # spec_path: spec
+    spec_prefix: spec
+
 extensions:
   - PhpSpec\Laravel\Extension\LaravelExtension
+
+laravel_extension:
+  testing_environment: testing
+  migrate_db: true
