@@ -53,4 +53,8 @@ And then edit the configuration file at:
 Version History
 ---------------
 
-`v1.0.0` -- Initial Release
+- **v1.1.0**
+  - Removed legacy 'createdb' command.
+  - Supporting Laravel 5
+- **v1.0.0**
+  - Initial Release

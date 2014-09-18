@@ -40,25 +40,19 @@ class VestServiceProvider extends ServiceProvider
      */
     protected function registerCommands()
     {
-
-        $app = $this->app;
-
-        // 'vest'
-        $app['command.vest'] = $app->share(function ($app) {
+        $this->app['command.vest'] = $this->app->share(function () {
             return new Command\Vest;
         });
         $this->commands('command.vest');
 
-        // 'vest:createdb'
-        $app['command.vest.coverage'] = $app->share(function ($app) {
+        $this->app['command.vest.run'] = $this->app->share(function () {
+            return new Command\Run;
+        });
+        $this->commands('command.vest.run');
+
+        $this->app['command.vest.coverage'] = $this->app->share(function () {
             return new Command\Coverage;
         });
         $this->commands('command.vest.coverage');
-
-        // 'vest:createdb'
-        $app['command.vest.createdb'] = $app->share(function ($app) {
-            return new Command\CreateDb;
-        });
-        $this->commands('command.vest.createdb');
     }
 }
