@@ -125,6 +125,10 @@ class Vest extends Command
         // Loop steps
         foreach ($config[$group] as $key => $value) {
 
+            if (!$value) {
+                continue;
+            }
+
             // Reference to another step
             if (is_numeric($key)) {
                 $resolved = $this->resolve($value);
