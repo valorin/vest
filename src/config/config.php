@@ -42,7 +42,7 @@ return [
     // PHPUnit
     'phpunit' => [
         'exec'    => './vendor/bin/phpunit',
-        'artisan' => [['vest:coverage', 'file' => './coverage.serialized', 'threshold' => 75]],
+        // 'artisan' => [['vest:coverage', 'file' => './coverage.serialized', 'threshold' => 75]],
     ],
 
     // phpspec
