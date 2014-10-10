@@ -86,6 +86,10 @@ class Vest extends Command
      */
     protected function banner($group)
     {
+        if ($this->option('quiet')) {
+            return;
+        }
+
         $banner = "== Running Vest group: <comment>{$group}</comment> ==";
         $strlen = strlen($banner) - 19;
         $this->info(str_pad('', $strlen, '='));
@@ -125,6 +129,7 @@ class Vest extends Command
         // Loop steps
         foreach ($config[$group] as $key => $value) {
 
+            // ignore empty values
             if (!$value) {
                 continue;
             }
@@ -194,7 +199,11 @@ class Vest extends Command
 
                 // Artisan Commands
                 case 'artisan':
-                    $this->question("Artisan: {$cmd} ".json_encode($options));
+
+                    if (!$this->option('quiet')) {
+                        $this->question("Artisan: {$cmd} ".json_encode($options));
+                    }
+
                     if ($this->call($cmd, $options)) {
                         $this->error('Command failed!');
                         $failed[] = "Artisan: {$cmd} ".json_encode($options);
@@ -204,7 +213,11 @@ class Vest extends Command
 
                 // Exec command
                 case 'exec':
-                    $this->question("Exec: {$cmd}");
+
+                    if (!$this->option('quiet')) {
+                        $this->question("Exec: {$cmd}");
+                    }
+
                     system($cmd, $code);
                     if ($code) {
                         $this->error('Command failed!');
@@ -249,6 +262,7 @@ class Vest extends Command
     protected function getOptions()
     {
         return array(
+            array('quiet', 'q', InputOption::VALUE_NONE, 'Mutes all announcements.'),
             array('list', null, InputOption::VALUE_NONE, 'Lists the available Vest commands.'),
         );
     }
