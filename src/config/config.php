@@ -4,8 +4,16 @@
  */
 return [
 
-    // Default Tasks list
+    // Default tasks
     'all' => [
+
+        // Intentionally left blank, due to changes in config merging.
+        // Update with your own tasks, or use the example below
+
+    ],
+
+    // Example default tasks list
+    'example' => [
         'prepare',
         'lint',
         'phpcs',
@@ -17,11 +25,13 @@ return [
 
     // Clean up environment
     'prepare' => [
-        'artisan' => [
-            'clear-compiled',
-            'optimize',
-            'cache:clear',
-        ],
+
+        // 'artisan' => [
+        //     'clear-compiled',
+        //     'optimize',
+        //     'cache:clear',
+        // ],
+
     ],
 
     // PHP Lint
