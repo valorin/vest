@@ -14,7 +14,7 @@ Installation
 Add the package to your application with composer:
 
 ```
-composer require "valorin/vest:~1.0"
+composer require valorin/vest
 ```
 
 Add the `VestServiceProvider` service provider to the `providers` list in `./app/config/app.php`:
@@ -26,6 +26,18 @@ Add the `VestServiceProvider` service provider to the `providers` list in `./app
 ),
 ```
 
+Publish the default configuration:
+
+```
+./artisan config:publish valorin/vest
+```
+
+Edit the configuration file at:
+
+```
+config/packages/valorin/vest/config.php
+```
+
 Usage
 -----
 
@@ -35,24 +47,14 @@ Run the `vest` command in the `testing` environment:
 ./artisan --env=testing vest
 ```
 
-Configuration
--------------
-
-To change the default configuration, run:
-
-```
-./artisan config:publish "valorin/vest"
-```
-
-And then edit the configuration file at:
-
-```
-./app/config/packages/valorin/vest/config.php
-```
 
 Version History
 ---------------
 
+- **v1.2.0**
+  - **Disabled default configuration** to support config merging changes.
+  - Added in --quiet option to mute extra outputs.
+  - Laravel 5 support.
 - **v1.1.0**
   - Removed legacy 'createdb' command.
   - Supporting Laravel 5
