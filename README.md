@@ -1,6 +1,8 @@
 # Vest
 *Valorin's Test Suite Artisan Command for Laravel 4.*
 
+**IMPORTANT: Vest does not support Laravel 5, and I don't think there is enough interest or benefit in it for me to do so.**
+
 Vest is a simple package I wrote to allow me to re-use my Laravel 4 test suite
 across all of my projects without needing to worry about keeping it in sync.
 
